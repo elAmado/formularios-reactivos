@@ -1,7 +1,8 @@
 <label>
-  Name:
-  <input type="text" [formControl]="name">
+	Nombre:
+	<input type="text" [formControl]="nombre">
 </label>
-<p *ngIf="name && name.value">
-  Value: {{ name.value }}
+
+<p *ngIf="nombre && nombre.value">
+	Valor: {{ nombre.value }}
 </p>

@@ -14,8 +14,9 @@ const routes: Routes = [
     component: FormComponent
   },
   {
-    path: 'formGroup',
-    loadChildren: () => import('./pages/form-group/form-group.module').then(m => m.FormGroupModule) },
+    path: 'formGroupx',
+    loadChildren: () => import('./pages/form-group/form-group.module').then(m => m.FormGroupModule)
+  },
 ];
 
 @NgModule({
