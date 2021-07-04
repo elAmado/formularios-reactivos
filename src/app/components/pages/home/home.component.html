@@ -1,1 +1,31 @@
-<p>home works!</p>
+<form [formGroup]="formulario">
+	<div>
+
+	</div>
+
+	<div class="form-group">
+		<!-- <div class="col-md-3" [ngClass]="aplicaCssErro('frameworks')"> -->
+		<div class="col-md-3">
+			<label for="frameworks">Frameworks</label>
+			<div id="frameworks" class="row">
+				<div class="checkbox" class="col-sm-"
+					formArrayName="frameworks"
+					*ngFor="let item of formulario.get('frameworks')['controls']; let i = index"
+				>
+					<label class="checkbox-inline">
+						<input type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	<button class="btn btn-default" (click)="resetear()">Cancelar</button>
+	<button class="btn btn-info" (click)="setarCargo()">Oficina</button>
+	<button class="btn btn-info" (click)="setarTecnologias()">Tecnologías</button>
+</form>
+
+<pre>
+	{{ formulario.value | json }}
+</pre>

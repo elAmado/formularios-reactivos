@@ -6,15 +6,26 @@
 				<div class="col-md-6 mb-3">
 					<label for="validationCustom01">Primer Nombre</label>
 					<input
-						type="datetime-local"
+						type="text"
 						class="form-control"
 						id="validationCustom01"
 						placeholder="Primer Nombre"
 						formControlName="primerNombre"
-						required
+						[ngClass]="{ 'is-invalid': campoValido('primerNombre') }"
 					>
 					<div class="invalid-feedback">
-						Por favor ingrese el primer nombre.
+						<!-- Por favor ingrese el primer nombre. -->
+						<!-- {{ formContacto.get('primerNombre').errors | json}} -->
+						<!-- {{ formContacto.get('primerNombre').errors?.minlength?.requiredLength | json}} -->
+						<span *ngIf="formContacto.get('primerNombre').errors?.required">
+							Este campo es required ;).
+						</span>
+						<span *ngIf="formContacto.get('primerNombre').errors?.minlength">
+							Este campo debe tener un mínimo de {{formContacto.get('primerNombre').errors?.minlength?.requiredLength}} carácteres ;).
+						</span>
+						<span *ngIf="formContacto.get('primerNombre').errors?.maxlength">
+							Este campo debe tener un máximo de {{formContacto.get('primerNombre').errors?.maxlength?.requiredLength}} carácteres ;).
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6 mb-3">
@@ -30,10 +41,22 @@
 							placeholder="Nombre de Usuario"
 							aria-describedby="inputGroupPrepend"
 							formControlName="nombreDeUsuario"
-							required
+							[ngClass]="{ 'is-invalid': campoValido('nombreDeUsuario') }"
 						>
 						<div class="invalid-feedback">
-							Por favor ingrese el nombre de usuario.
+							<span *ngIf="formContacto.get('nombreDeUsuario').errors?.required">
+								Este campo es required ;).
+							</span>
+							<span *ngIf="formContacto.get('nombreDeUsuario').errors?.minlength">
+								Este campo debe tener un mínimo de {{formContacto.get('nombreDeUsuario').errors?.minlength?.requiredLength}} carácteres ;).
+							</span>
+							<span *ngIf="formContacto.get('nombreDeUsuario').errors?.maxlength">
+								Este campo debe tener un máximo de {{formContacto.get('nombreDeUsuario').errors?.maxlength?.requiredLength}} carácteres ;).
+							</span>
+							<span *ngIf="formContacto.get('nombreDeUsuario').errors?.pattern">
+								Debe ingresar un e-mail válido.
+							</span>
+						<!-- {{ formContacto.get('nombreDeUsuario').errors?.pattern | json}} -->
 						</div>
 					</div>
 				</div>
@@ -48,11 +71,18 @@
 						id="validationCustom03"
 						placeholder="Ciudad"
 						formControlName="ciudad"
-						required
-						autofocus
+						[ngClass]="{ 'is-invalid': campoValido('ciudad') }"
 					>
 					<div class="invalid-feedback">
-						Proporciona una ciudad válida.
+						<span *ngIf="formContacto.get('ciudad').errors?.required">
+							Este campo es required ;).
+						</span>
+						<span *ngIf="formContacto.get('ciudad').errors?.minlength">
+							Este campo debe tener un mínimo de {{formContacto.get('ciudad').errors?.minlength?.requiredLength}} carácteres ;).
+						</span>
+						<span *ngIf="formContacto.get('ciudad').errors?.maxlength">
+							Este campo debe tener un máximo de {{formContacto.get('ciudad').errors?.maxlength?.requiredLength}} carácteres ;).
+						</span>
 					</div>
 				</div>
 				<div class="col-md-3 mb-3">
@@ -63,8 +93,19 @@
 						id="validationCustom04"
 						placeholder="Estado"
 						formControlName="estado"
-						required
+						[ngClass]="{ 'is-invalid': campoValido('estado') }"
 					>
+					<div class="invalid-feedback">
+						<span *ngIf="formContacto.get('estado').errors?.required">
+							Este campo es required ;).
+						</span>
+						<span *ngIf="formContacto.get('estado').errors?.minlength">
+							Este campo debe tener un mínimo de {{formContacto.get('estado').errors?.minlength?.requiredLength}} carácteres ;).
+						</span>
+						<span *ngIf="formContacto.get('estado').errors?.maxlength">
+							Este campo debe tener un máximo de {{formContacto.get('estado').errors?.maxlength?.requiredLength}} carácteres ;).
+						</span>
+					</div>
 				</div>
 				<div class="col-md-3 mb-3">
 					<label for="validationCustom05">Código Postal</label>
@@ -74,10 +115,18 @@
 						id="validationCustom05"
 						placeholder="Código Postal"
 						formControlName="codigoPostal"
-						required
+						[ngClass]="{ 'is-invalid': campoValido('codigoPostal') }"
 					>
 					<div class="invalid-feedback">
-						Proporcione un código postal.
+						<span *ngIf="formContacto.get('codigoPostal').errors?.required">
+							Este campo es required ;).
+						</span>
+						<span *ngIf="formContacto.get('codigoPostal').errors?.minlength">
+							Este campo debe tener un mínimo de {{formContacto.get('codigoPostal').errors?.minlength?.requiredLength}} carácteres ;).
+						</span>
+						<span *ngIf="formContacto.get('codigoPostal').errors?.pattern">
+							Ingrese sólo números.
+						</span>
 					</div>
 				</div>
 			</div>
@@ -112,6 +161,14 @@
 	</div>
 </div>
 
+
+<pre>
+	Dirty => {{ formContacto.dirty }}
+</pre>
+
+<pre>
+	Touched => {{ formContacto.touched }}
+</pre>
 
 <pre>
 	Value (Valor del Formulario):
